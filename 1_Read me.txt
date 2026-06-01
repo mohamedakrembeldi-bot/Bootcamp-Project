@@ -1,0 +1,52 @@
+An end-to-end computer vision pipeline that identifies celebrities using Deep Learning (FaceNet) and Classical ML (SVM).
+
+Project Overview:
+This app transforms raw images into mathematical embeddings to perform high-accuracy identity classification. It is deployed as an interactive web application via Streamlit.
+
+Architecture:
+The project is divided into three distinct phases to ensure separation of concerns and data persistence.
+
+Phase 1: Data Engineering & Preprocessing
+Dataset: PINS Face Recognition Dataset.
+
+Face Detection: Utilized MTCNN (Multi-task Cascaded Convolutional Networks) to detect and crop faces.
+
+Normalization: Automated resizing of all detected faces to 160x160 pixels and boundary clipping to ensure data integrity for the neural network.
+
+Bridge Strategy: Processed data was saved to Google Drive to avoid redundant computation.
+
+Phase 2: Deep Learning Feature Extraction
+Model: FaceNet.
+
+Embeddings: Converted 160x160 images into 512-dimensional feature vectors.
+
+Transfer Learning: Used FaceNet as a fixed feature extractor to translate visual data into a mathematical "face language."
+
+Phase 3: Machine Learning Classification
+Classifier: Support Vector Machine (SVM) with a linear kernel.
+
+Encoding: Implemented LabelEncoder to map identity strings to numerical targets.
+
+Performance: Achieved high accuracy by training the SVM on the compressed 512D embeddings rather than raw pixels.
+
+Language: Python
+
+Computer Vision: OpenCV, MTCNN
+
+Deep Learning: TensorFlow/Keras, FaceNet
+
+Machine Learning: Scikit-Learn (SVM, LabelEncoder)
+
+Web Framework: Streamlit
+
+Deployment: Ngrok / LocalTunnel
+
+Project Structure
+Plaintext
+Notebook 1: data_gathering_processing.ipynb  # Data cleaning & MTCNN cropping
+Notebook 2: Embading_phase.ipynb             # FaceNet feature extraction
+Notebook 3: Modeling_Phase.ipynb             # SVM classification & Model saving
+Notebook 3: Modeling_Phase.ipynb             # Streamlit app and deploing via ngrok tunnel
+face_recognizer_model.pkl                    # Trained SVM model 
+label_encoder.pkl                            # Name-to-Integer map
+
